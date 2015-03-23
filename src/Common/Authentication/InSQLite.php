@@ -31,15 +31,15 @@ class InSQLite implements IAuthentication
 
 
         // Create database and insert data
-// 		$query = $dbh->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user';");
-// 
-//         if ($query === 0)
-//         {
-//             $dbh->exec('CREATE TABLE user (username VARCHAR(255), password VARCHAR(255))');
-//             $dbh->exec('INSERT INTO user (username, password) VALUES ("Kathytt","kat123")');
-//         }
-// 
-//         $query = $dbh->querySingle("SELECT count(*) FROM user WHERE username='$username' AND password='$password'");
+		$query = $dbh->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user';");
+
+        if ($query === 0)
+        {
+            $dbh->exec('CREATE TABLE user (username VARCHAR(255), password VARCHAR(255))');
+            $dbh->exec('INSERT INTO user (username, password) VALUES ("Kathytt","kat123")');
+        }
+
+        $query = $dbh->querySingle("SELECT count(*) FROM user WHERE username='$username' AND password='$password'");
 
 
 
