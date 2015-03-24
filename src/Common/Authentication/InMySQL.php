@@ -61,23 +61,23 @@ class InMySQL implements IAuthentication
             return false;
         }
 
-        // Set up the query to retrieve user information as a statement.
+        // Set up the query to retrieve user information
         $statement = $conn->prepare("SELECT username, password FROM users WHERE username = ? AND password = ?;");
 
-        // If the statement initialized correctly, execute it.
+        // execute if statement is correct
         if ($statement != false && $statement->execute(array($this->username, $this->password)) != false)
         {
-            // If the statement executed correctly, get the records from it.
+            // get record if statement is correct
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             if (count($results) > 0)
             {
-                // If there was a record returned, it means the login was successful.
+                // If there was a record returned, login success
                 echo "MySQL login success. Hello, " . htmlspecialchars($this->username);
                 return true;
             }
         }
 
-        // If this is reached then the login attempt failed.
+        
         echo "MySQL login invalid!";
         return false;
     }
