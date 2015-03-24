@@ -31,7 +31,7 @@ class InSQLite implements IAuthentication
 
 
         // Create database and insert data
-		$query = $dbh->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user';");
+	$query = $dbh->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user';");
 
         if ($query === 0)
         {
@@ -53,19 +53,17 @@ class InSQLite implements IAuthentication
         // Execute the query statement.
         $result = $statement->execute();
 
-        // Retrieve the actual records from the executed query.
+        // Retrieve records from the executed query.
         $rows = $result->fetchArray(SQLITE3_ASSOC);
 
-        // The fetchArray call above will return a boolean false if no records
-        // were found. If a record was found it means the user credentials
-        // were correct.
+        // The fetchArray call above will return a boolean false if no records found.
+        // If a record was found it means the user credentials were correct.
         if ($rows != false && count($rows) > 0)
         {
             echo 'SQLite login success. Hello, ' . htmlspecialchars($this->username);
             return true;
         }
-
-        // If this is reached then the login attempt failed.
+        
         echo 'SQLite login failed!';
         return false;
     }
